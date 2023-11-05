@@ -1,0 +1,9 @@
+.non_active{
+    border-top: 1px;
+    border-bottom: 1px;
+    border-color: #dddddd;
+    border-style: solid;
+}
+.active{
+    border-color: black;
+}
