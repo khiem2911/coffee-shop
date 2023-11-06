@@ -7,10 +7,13 @@ import Detail from "./components/menu/Detail";
 import MenuRoot from "./root/MenuRoot";
 import Login from "./components/Auth/Login";
 import Auth from "./components/Auth";
+import Register from "./components/Auth/Register";
+import Cart from "./components/home/Cart";
 
 function App() {
 
   const router = createBrowserRouter([
+    {path:'cart',element:<Cart/>},
     {path:'/',element : <Root/>,children:[
       {index:true,element:<Home/>},
       {path:'menu',element:<MenuRoot/>,loader:getMenu,id:'getMenu',children:[
@@ -19,7 +22,8 @@ function App() {
       ]}
     ]},
     {path:'/auth',element:<Auth/>,children:[
-      {path:'login',element:<Login/>}
+      {path:'login',element:<Login/>},
+      {path:'register',element:<Register/>}
     ]}
   ])
 

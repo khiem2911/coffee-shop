@@ -1,12 +1,26 @@
 import { useParams, useRouteLoaderData } from "react-router-dom";
 import menu from "../../model/menu";
 import { Link } from "react-router-dom";
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 const Detail = () => {
   const data = useRouteLoaderData("getMenu") as menu[];
+  const [quantity,setQuantity] = useState(1)
   const { name } = useParams();
   const coffee = data.find((item) => item.title === name);
   const suggestCoffees = data.slice(0, 3);
+
+
+  const onIncreaseQuantity = () =>{
+      setQuantity((quantity)=>quantity+1)
+  }
+
+  const onDecreaseQuantity = () =>{
+      if(quantity<=0){
+        return
+      }
+      setQuantity((quantity)=>quantity-1)
+
+  }
 
   useEffect(()=>{
     window.scroll(0,0)
@@ -48,9 +62,9 @@ const Detail = () => {
                 Add to Cart
               </button>
               <div className="flex justify-around items-center w-2/6 border border-title">
-                <button className="text-xl">-</button>
-                <p className="text-xl">1</p>
-                <button className="text-xl">+</button>
+                <button onClick={onDecreaseQuantity}  className="text-xl">-</button>
+                <p className="text-xl">{quantity}</p>
+                <button onClick={onIncreaseQuantity} className="text-xl">+</button>
               </div>
             </div>
             <button className="bg-title hover:bg-hover-bg text-white text-center p-3">

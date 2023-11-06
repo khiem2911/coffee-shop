@@ -18,7 +18,7 @@ const MainNavigation = () =>{
               <li className='p-2  cursor-pointer'>Community</li>
               <li className='p-2  cursor-pointer'>New</li>
               <li className='p-2  cursor-pointer'>
-                  <button className='text-white bg-title py-2 px-4 hover:bg-hover-bg'>Order</button>
+                  <Link to='cart' className='text-white bg-title py-2 px-4 hover:bg-hover-bg'>Order</Link>
               </li>
               <li className='p-2  cursor-pointer'>
                   <Link to='/auth/login' className='py-2 px-4 border border-solid border-title text-title hover:bg-title  hover:text-white'>Sign in</Link>
