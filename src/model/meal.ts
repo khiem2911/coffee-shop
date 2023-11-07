@@ -1,6 +1,7 @@
 interface meal{
     name:string,
-    quantity:string,
-    money:string
+    quantity:number,
+    money:number,
+    img:string
 }
 export default meal

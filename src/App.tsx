@@ -13,6 +13,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore'
 import { firebaseConfig } from "./firebase";
+import { Provider } from "react-redux";
+import { store } from "./slice/store";
 
 function App() {
 
@@ -33,7 +35,7 @@ function App() {
     ]}
   ])
 
-  return <RouterProvider router={router}/>
+  return <Provider store={store}> <RouterProvider router={router}/> </Provider>
 }
 
 export default App;

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import header from "../model/header";
 import React from "react";
-
+import { useAppSelector } from "../slice/store";
 const MainNavigation: React.FC<header> = (props) => {
 
 
-  
+  const quantity = useAppSelector(state=>state.cart.totalQuantity)
 
+  
 
   const onHandlerLogOut = () =>{
     props.logOut()
@@ -36,7 +37,7 @@ const MainNavigation: React.FC<header> = (props) => {
                 to="cart"
                 className="text-white bg-title py-2 px-4 hover:bg-hover-bg"
               >
-                Cart(0)
+                Cart ({quantity})
               </Link>
             </li>
             {props.user === null && (

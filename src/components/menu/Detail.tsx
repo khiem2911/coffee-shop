@@ -1,21 +1,44 @@
-import { useParams, useRouteLoaderData } from "react-router-dom";
+import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
 import menu from "../../model/menu";
 import { Link } from "react-router-dom";
 import {useEffect,useState} from 'react'
+import meal from "../../model/meal";
+import { useAppDispatch } from "../../slice/store";
+import { addMeal } from "../../slice";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore'
+
 const Detail = () => {
   const data = useRouteLoaderData("getMenu") as menu[];
   const [quantity,setQuantity] = useState(1)
   const { name } = useParams();
   const coffee = data.find((item) => item.title === name);
   const suggestCoffees = data.slice(0, 3);
-
+  const dispatch = useAppDispatch()
+  const user = firebase.auth().currentUser
+  const navigate = useNavigate()
 
   const onIncreaseQuantity = () =>{
       setQuantity((quantity)=>quantity+1)
   }
 
+  const onAddToCart = () =>{
+      if(!user){
+       return navigate('/auth/login')
+      }
+
+      const value:meal = {
+          name:coffee!.title,
+          quantity:quantity,
+          img:coffee!.image,
+          money:Math.round(Math.random()*20)
+      }
+     dispatch(addMeal(value))
+  }
+
   const onDecreaseQuantity = () =>{
-      if(quantity<=0){
+      if(quantity<=1){
         return
       }
       setQuantity((quantity)=>quantity-1)
@@ -38,9 +61,9 @@ const Detail = () => {
         </div>
         <div>
           <div className="flex gap-2">
-            <p>Home</p>
+            <Link to='/' className='cursor-pointer'>Home</Link>
             <p>&gt;</p>
-            <p>Menu</p>
+            <Link to='/menu'>Menu</Link>
             <p>&gt;</p>
             <p className="font-bold">Detail</p>
           </div>
@@ -58,7 +81,7 @@ const Detail = () => {
           </span>
           <div className="flex flex-col gap-3 w-3/4">
             <div className="flex justify-between gap-4">
-              <button className=" border border-title w-4/6 hover:bg-title  hover:text-white p-3 text-title font-bold">
+              <button onClick={onAddToCart} className=" border border-title w-4/6 hover:bg-title  hover:text-white p-3 text-title font-bold">
                 Add to Cart
               </button>
               <div className="flex justify-around items-center w-2/6 border border-title">
