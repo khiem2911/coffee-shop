@@ -9,8 +9,14 @@ import Login from "./components/Auth/Login";
 import Auth from "./components/Auth";
 import Register from "./components/Auth/Register";
 import Cart from "./components/home/Cart";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore'
+import { firebaseConfig } from "./firebase";
 
 function App() {
+
+  firebase.initializeApp(firebaseConfig)
 
   const router = createBrowserRouter([
     {path:'cart',element:<Cart/>},

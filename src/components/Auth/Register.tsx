@@ -1,14 +1,48 @@
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Auththen from "./Auth";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore'
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [visiblePass, setVisible] = useState(false);
+    const inputEmail =  useRef<HTMLInputElement>(null);
+    const inputPass =  useRef<HTMLInputElement>(null);
+    const [validEmail,setValidEmail] = useState(true)
+    const [validPassword,setValidPassword] = useState(true)
+    const navigate = useNavigate()
+
+
 
     const onVisible = () => {
         setVisible(!visiblePass);
     };
+
+    const onHandlerSignUp = async () =>{
+        if(!validEmail || !validPassword || inputEmail.current?.value === '' || inputPass.current?.value === '' ){
+            return alert('Vui lòng điền đầy đủ vào các input')
+        }
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(inputEmail.current!.value, inputPass.current!.value);
+            alert('Đăng ký thành công!');
+            navigate('/')
+          } catch (error:any) {
+            alert('Đăng ký thất bại: ' + error.message);
+          }
+    }
+
+    const onCheckInputEmail = () =>{
+            const checked = inputEmail.current?.value.includes('@')
+            setValidEmail(checked!)
+    }
+
+    const oncheckInputPass = () =>{
+            const checked = inputPass.current!.value.length>8
+            setValidPassword(checked)
+    }
 
     return (
         <Auththen secondTitle='Create an account to easily shopping' title='Create Your Account'>
@@ -23,23 +57,28 @@ const Register = () => {
                     id="name"
                     placeholder="Enter name"
                 />
-                <label htmlFor="email" className="block mb-4 mt-7">
+                <label  htmlFor="email" className="block mb-4 mt-7">
                     Email
                 </label>
                 <input
+                    onBlur={onCheckInputEmail}
                     className="border p-2 border-border-auth w-full"
                     type="email"
                     name="email"
+                    ref={inputEmail}
                     id="email"
                     placeholder="Enter mail"
                 />
+                {!validEmail && <p className='text-red-500'>Email should contain @</p>}
                 <label htmlFor="password" className="block mt-7 mb-4">
                     Password
                 </label>
                 <div className=" relative">
                     <input
+                        onBlur={oncheckInputPass}
                         className="border relative p-2  border-border-auth w-full"
                         type={visiblePass ? "text" : "password"}
+                        ref={inputPass}
                         name="password"
                         id="password"
                         placeholder="Enter password"
@@ -59,8 +98,9 @@ const Register = () => {
                         />
                     )}
                 </div>
+                {!validPassword && <p className='text-red-500'>Password length at least 8</p>}
                 <div className="flex flex-col items-center gap-8">
-                    <button className="text-white mt-7 w-full text-center p-3 bg-title hover:bg-hover-bg">
+                    <button onClick={onHandlerSignUp} className="text-white mt-7 w-full text-center p-3 bg-title hover:bg-hover-bg">
                         Sign Up
                     </button>
                     <span className="flex gap-2">
