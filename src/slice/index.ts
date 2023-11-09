@@ -27,10 +27,15 @@ export const cartSlice = createSlice({
           (item) => item.name === existCoffee.name
         );
         state.meals[indexExitstCoffee].quantity += action.payload.quantity;
+        state.totalBill = state.meals.reduce((accumulator, currentValue) => {
+          return accumulator + currentValue.quantity * currentValue.money;
+        }, 0);
       } else {
         state.meals.push(action.payload);
-        state.totalBill += action.payload.quantity * action.payload.money;
       }
+      state.totalBill = state.meals.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.quantity * currentValue.money;
+      }, 0);
     },
     increaseMeal: (state, action: PayloadAction<meal>) => {
       const coffee = state.meals.find(
@@ -69,7 +74,12 @@ export const cartSlice = createSlice({
           }, 0);
       }
     },
+    clearMeal : (state) =>{
+      state.meals = []
+      state.totalBill = 0
+      state.totalQuantity =0
+    }
   },
 });
 export default cartSlice.reducer;
-export const { addMeal, increaseMeal,decreaseMeal } = cartSlice.actions;
+export const { addMeal, increaseMeal,decreaseMeal,clearMeal } = cartSlice.actions;

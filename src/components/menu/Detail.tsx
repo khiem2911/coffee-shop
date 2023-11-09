@@ -8,13 +8,13 @@ import { addMeal } from "../../slice";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore'
+import SuggestCoffee from "./SuggestCoffe";
 
 const Detail = () => {
   const data = useRouteLoaderData("getMenu") as menu[];
   const [quantity,setQuantity] = useState(1)
   const { name } = useParams();
   const coffee = data.find((item) => item.title === name);
-  const suggestCoffees = data.slice(0, 3);
   const dispatch = useAppDispatch()
   const user = firebase.auth().currentUser
   const navigate = useNavigate()
@@ -90,43 +90,15 @@ const Detail = () => {
                 <button onClick={onIncreaseQuantity} className="text-xl">+</button>
               </div>
             </div>
-            <button className="bg-title hover:bg-hover-bg text-white text-center p-3">
+            <Link onClick={onAddToCart} to='/cart' className="bg-title hover:bg-hover-bg text-white text-center p-3">
               Buy it Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>
-      <div className=" bg-bg-suggest flex flex-col p-8">
-        <h1 className="text-3xl font-bold mb-7">You May Also Like</h1>
-        <div className="grid justify-items-center grid-cols-3 gap-5">
-          {suggestCoffees.map((item) => (
-            <div key={item.id} className="w-2/4 mb-7">
-              <div className="w-full h-72 cursor-pointer">
-                <Link to={`/menu/detail/${item.title}`}>
-                  <img
-                    src={item.image}
-                    className="w-full h-full object-cover"
-                    alt={item.image}
-                  />
-                </Link>
-              </div>
-              <div className="pt-1">
-                <Link to={`/menu/detail/${item.title}`}>
-                 
-                  <h1 className="font-bold text-2xl cursor-pointer">
-                    {item.title}
-                  </h1>
-                </Link>
-                <p>Available Only at Cafe and Delivery</p>
-                <h1 className="font-bold text-2xl">
-                  ${(Math.random() * 20).toFixed(2)}
-                </h1>
-                <p className="text-title font-bold">Get 20% Off in App</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+
+        <SuggestCoffee/>
+     
     </>
   );
 };

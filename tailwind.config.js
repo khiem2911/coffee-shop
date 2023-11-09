@@ -12,7 +12,9 @@ module.exports = {
         'footer_text':'#a07a5b',
         'bg-suggest':'#fcf7ef',
         'border-auth':'#c9c9c9',
-        'text-auth':'#a2a2a2'
+        'text-auth':'#a2a2a2',
+        'border-checkout':'#22d7a6',
+        'border-gray':'#e7e7e7'
       }
     },
   },

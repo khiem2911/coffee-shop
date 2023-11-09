@@ -12,6 +12,7 @@ const Register = () => {
     const inputEmail =  useRef<HTMLInputElement>(null);
     const inputPass =  useRef<HTMLInputElement>(null);
     const [validEmail,setValidEmail] = useState(true)
+    const inputName = useRef<HTMLInputElement>(null);
     const [validPassword,setValidPassword] = useState(true)
     const navigate = useNavigate()
 
@@ -22,11 +23,14 @@ const Register = () => {
     };
 
     const onHandlerSignUp = async () =>{
-        if(!validEmail || !validPassword || inputEmail.current?.value === '' || inputPass.current?.value === '' ){
+        if(!validEmail || !validPassword || inputEmail.current?.value === '' || inputPass.current?.value === '' || inputName.current?.value === '' ){
             return alert('Vui lòng điền đầy đủ vào các input')
         }
         try {
-            await firebase.auth().createUserWithEmailAndPassword(inputEmail.current!.value, inputPass.current!.value);
+            const userCredential  =  await firebase.auth().createUserWithEmailAndPassword(inputEmail.current!.value, inputPass.current!.value);
+            await userCredential.user?.updateProfile({
+                displayName: inputName.current!.value, 
+              });
             alert('Đăng ký thành công!');
             navigate('/')
           } catch (error:any) {
@@ -56,6 +60,7 @@ const Register = () => {
                     name="name"
                     id="name"
                     placeholder="Enter name"
+                    ref={inputName}
                 />
                 <label  htmlFor="email" className="block mb-4 mt-7">
                     Email

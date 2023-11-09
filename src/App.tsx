@@ -15,6 +15,8 @@ import 'firebase/compat/firestore'
 import { firebaseConfig } from "./firebase";
 import { Provider } from "react-redux";
 import { store } from "./slice/store";
+import CheckOut from "./components/home/CheckOut";
+
 
 function App() {
 
@@ -27,7 +29,9 @@ function App() {
       {path:'menu',element:<MenuRoot/>,loader:getMenu,id:'getMenu',children:[
         {index:true,element:<Menu/>},
         {path:'detail/:name',element:<Detail/>}
-      ]}
+       
+      ]},
+      {path:'checkout',element:<CheckOut/>}
     ]},
     {path:'/auth',element:<Auth/>,children:[
       {path:'login',element:<Login/>},

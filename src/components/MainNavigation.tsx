@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import header from "../model/header";
 import React from "react";
-import { useAppSelector } from "../slice/store";
+import { useAppDispatch, useAppSelector } from "../slice/store";
+import { clearMeal } from "../slice";
 const MainNavigation: React.FC<header> = (props) => {
 
 
   const quantity = useAppSelector(state=>state.cart.totalQuantity)
-
+  const dispatch = useAppDispatch()
   
 
   const onHandlerLogOut = () =>{
+    dispatch(clearMeal())
     props.logOut()
   }
 
