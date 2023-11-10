@@ -24,7 +24,7 @@ const Home = () => {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [onSetUser]);
 
   return (
     <div className="px-20">

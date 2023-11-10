@@ -25,9 +25,12 @@ const CheckOut = () => {
     dispatch(clearMeal());
   }, [dispatch]);
 
-  return (
-    <>
-      <div className="flex flex-col px-24">
+
+  let context;
+
+  if (temptData.length > 0) {
+    context =
+      <>
         <div className="flex flex-col items-center">
           <span className="border border-solid border-border-checkout p-1">
             <AiOutlineCheck color="#22d7a6" size={30} />
@@ -59,11 +62,11 @@ const CheckOut = () => {
             {temptData.map((item) => (
               <div className="flex justify-between items-center border-b border-solid mt-2 pb-4 border-border-gray">
                 <div className="flex items-center gap-4 ">
-                  <div className=" w-1/12 h-full">
+                  <div className=" w-1/12 md:w-1/2 lg:w-1/3 xl:w-1/4 h-full ">
                     <img
                       src={item.img}
                       alt={item.img}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover "
                     />
                   </div>
                   <span className="flex flex-col gap-4">
@@ -97,6 +100,16 @@ const CheckOut = () => {
             <p>${temptSub + temptTax}</p>
           </span>
         </div>
+      </>
+  } else {
+    context = <p className='font-bold text-2xl m-auto'>Please order some coffees </p>
+  }
+
+
+  return (
+    <>
+      <div  className="flex flex-col px-24" >
+        {context}
         <span className='m-auto mb-16 mt-16'>
           <Link
             to="/menu"

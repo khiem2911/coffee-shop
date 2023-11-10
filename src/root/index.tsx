@@ -19,7 +19,7 @@ const Root = () => {
   const onLogOut = () =>{
     firebase.auth().signOut().then(() => {
       setUser(null!)
-      navigate('/auth/login')
+      navigate('/')
     }).catch((error) => {
       alert(error.message)
     });

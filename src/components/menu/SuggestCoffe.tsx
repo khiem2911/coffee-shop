@@ -6,8 +6,14 @@ import {useEffect,useState} from 'react'
 const SuggestCoffee = () => {
 
     
+
+  const getRandomElements = (array:menu[], n:number) => {
+    const shuffledArray = array.sort(() => Math.random() - 0.5); 
+    return shuffledArray.slice(0, n); 
+  };
+
     const [data,setData ] = useState<Array<menu>>([])
-    const suggestCoffees = data!.slice(0, 3);
+    const suggestCoffees = getRandomElements(data,3);
 
 
     useEffect (()=>{

@@ -18,6 +18,8 @@ const Detail = () => {
   const dispatch = useAppDispatch()
   const user = firebase.auth().currentUser
   const navigate = useNavigate()
+  const temptMoney = Math.round(Math.random() *20)
+  const discountTemptMoney = temptMoney/0.8
 
   const onIncreaseQuantity = () =>{
       setQuantity((quantity)=>quantity+1)
@@ -47,6 +49,7 @@ const Detail = () => {
 
   useEffect(()=>{
     window.scroll(0,0)
+    setQuantity(1)
   },[name])
 
   return (
@@ -69,9 +72,9 @@ const Detail = () => {
           </div>
           <h1 className="font-bold text-3xl pt-7">{coffee?.title}</h1>
           <div className="flex items-center gap-2 pt-4">
-            <p className="text-2xl font-bold">$4,00</p>
+            <p className="text-2xl font-bold">${temptMoney.toFixed(2)}</p>
             <span className="flex gap-3">
-              <p className="font-bold line-through">$5,00</p>
+              <p className="font-bold line-through">${discountTemptMoney.toFixed(2)}</p>
               <p className="text-title">Get 20% Off in App</p>
             </span>
           </div>

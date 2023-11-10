@@ -170,7 +170,7 @@ const Menu = () => {
             </button>
           </span>
         )}
-        {value.length === 0 && <h1 className="text-2xl">No results</h1>}
+        {value.length === 0 && <h1 className="text-2xl text-center">No results</h1>}
       </div>
     </>
   );

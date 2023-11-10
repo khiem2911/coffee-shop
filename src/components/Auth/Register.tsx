@@ -12,6 +12,7 @@ const Register = () => {
     const inputEmail =  useRef<HTMLInputElement>(null);
     const inputPass =  useRef<HTMLInputElement>(null);
     const [validEmail,setValidEmail] = useState(true)
+    const [validName,setValidName] = useState(true)
     const inputName = useRef<HTMLInputElement>(null);
     const [validPassword,setValidPassword] = useState(true)
     const navigate = useNavigate()
@@ -48,6 +49,11 @@ const Register = () => {
             setValidPassword(checked)
     }
 
+    const onCheckInputName = () =>{
+            const checked = inputName.current!.value.length>8
+            setValidName(checked)
+    }
+
     return (
         <Auththen secondTitle='Create an account to easily shopping' title='Create Your Account'>
             <div className="mt-12">
@@ -58,10 +64,12 @@ const Register = () => {
                     className="border p-2 border-border-auth w-full"
                     type="text"
                     name="name"
+                    onBlur={onCheckInputName}
                     id="name"
                     placeholder="Enter name"
                     ref={inputName}
                 />
+                {!validName && <p className='text-red-500'>Name length at least 8</p>}
                 <label  htmlFor="email" className="block mb-4 mt-7">
                     Email
                 </label>

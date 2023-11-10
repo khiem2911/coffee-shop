@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import header from "../model/header";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../slice/store";
 import { clearMeal } from "../slice";
+import classes from './MainNavigation.module.css'
 const MainNavigation: React.FC<header> = (props) => {
 
 
-  const quantity = useAppSelector(state=>state.cart.totalQuantity)
+  const quantity = useAppSelector(state => state.cart.totalQuantity)
   const dispatch = useAppDispatch()
-  
 
-  const onHandlerLogOut = () =>{
+
+  const onHandlerLogOut = () => {
     dispatch(clearMeal())
     props.logOut()
   }
@@ -24,13 +25,17 @@ const MainNavigation: React.FC<header> = (props) => {
         </Link>
         <nav>
           <ul className="flex list-none items-center pr-8 m-0">
-            <Link to={"/"} className="p-2 cursor-pointer">
+            <NavLink className={({ isActive }) =>
+              isActive ? classes.active : 'p-2 cursor-pointer'
+            } to={"/"} >
               Home
-            </Link>
+            </NavLink>
             <li className="p-2  cursor-pointer">Story</li>
-            <Link className="p-2 cursor-pointer" to={"menu"}>
+            <NavLink className={({ isActive }) =>
+              isActive ? classes.active : 'p-2 cursor-pointer'
+            } to={"menu"} >
               Menu
-            </Link>
+            </NavLink>
             <li className="p-2  cursor-pointer">Space</li>
             <li className="p-2  cursor-pointer">Community</li>
             <li className="p-2  cursor-pointer">New</li>
@@ -58,7 +63,7 @@ const MainNavigation: React.FC<header> = (props) => {
                   onClick={onHandlerLogOut}
                   className="py-2 px-4 border border-solid border-title text-title hover:bg-title  hover:text-white"
                 >
-                 log out
+                  log out
                 </button>
               </li>
             )}
