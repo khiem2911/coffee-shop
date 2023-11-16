@@ -54,11 +54,11 @@ const Detail = () => {
 
   return (
     <>
-      <div className="flex pl-32 gap-64 mb-8">
-        <div className=" w-96 h-3/6">
+      <div className="flex pl-3 lg:pl-32 gap-3 lg:gap-64 mb-8">
+        <div className=" w-96 ">
           <img
             src={coffee?.image}
-            className="w-full h-full object-fit"
+            className="w-full h-auto "
             alt={coffee?.image}
           />
         </div>
