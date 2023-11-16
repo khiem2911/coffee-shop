@@ -71,7 +71,7 @@ const Detail = () => {
             <p className="font-bold">Detail</p>
           </div>
           <h1 className="font-bold text-3xl pt-7">{coffee?.title}</h1>
-          <div className="flex items-center gap-2 pt-4">
+          <div className=" flex-col flex items-start lg:flex lg:items-center lg:flex-row gap-2 pt-4">
             <p className="text-2xl font-bold">${temptMoney.toFixed(2)}</p>
             <span className="flex gap-3">
               <p className="font-bold line-through">${discountTemptMoney.toFixed(2)}</p>
