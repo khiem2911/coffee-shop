@@ -2,3 +2,18 @@
     border-bottom: 1px solid black;
     padding: 0.5rem;
 }
+@keyframes slideIn {
+    from {
+      transform: translateX(10rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .animation {
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;  
+  }
+  

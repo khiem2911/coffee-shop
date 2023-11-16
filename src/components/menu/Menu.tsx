@@ -1,7 +1,7 @@
 import { useRouteLoaderData } from "react-router-dom";
 import { getMenu } from "../../http";
 import menu from "../../model/menu";
-import { ChangeEvent, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import classes from "./Menu.module.css";
 import { Link } from "react-router-dom";
 
@@ -26,9 +26,7 @@ const Menu = () => {
     setCoffees(newMenuCoffees);
   };
 
-  const filterPrice = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-  };
+ 
 
   const onSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const searchValue = searchRef.current!.value;
@@ -52,16 +50,16 @@ const Menu = () => {
 
   const content = value.map((item) => (
     <div key={item.id} className="w-2/4 mb-7">
-      <div className="w-full h-72 cursor-pointer">
+      <div className="w-full  cursor-pointer">
         <Link to={`detail/${item.title}`}>
           <img
             src={item.image}
-            className="w-full h-full object-cover"
+            className="w-full h-auto  "
             alt={item.image}
           />
         </Link>
       </div>
-      <div className="pt-1">
+      <div className="pt-1 md:pt-0">
        <Link to={`detail/${item.title}`}> <h1 className="font-bold text-2xl cursor-pointer">{item.title}</h1> </Link> 
         <p>Available Only at Cafe and Delivery</p>
         <h1 className="font-bold text-2xl">
@@ -74,8 +72,8 @@ const Menu = () => {
 
   return (
     <>
-      <div className="flex pl-32 flex-col ">
-        <h1 className="font-bold text-5xl">Our Menu</h1>
+      <div className="flex pl-5 lg:pl-32 flex-col ">
+        <h1 className="font-bold sm:text-4xl lg:text-5xl ">Our Menu</h1>
         <span className="py-8">
           <p className="text-lg max-w-xl">
             IMAJI Coffee provides a variety of high quality coffee and drinks
@@ -101,35 +99,7 @@ const Menu = () => {
               onKeyDown={onSearch}
             />
           </div>
-          <div className="w-1/6">
-            <div className="flex justify-between pb-2">
-              <p>Price</p>
-              <p className="hover:cursor-pointer">Clear</p>
-            </div>
-            <select
-              defaultValue="Under 20"
-              className="border w-full  p-1 border-black"
-              placeholder="Keyword"
-              onChange={filterPrice}
-            >
-              <option value="20">Under $20</option>
-              <option value="10">Under $10</option>
-              <option value="5">Under $5</option>
-            </select>
-          </div>
-          <div className="w-1/6">
-            <div className="flex justify-between pb-2">
-              <p>Sort By</p>
-              <p className="hover:cursor-pointer">Clear</p>
-            </div>
-            <select
-              defaultValue="Best Selling"
-              className="border w-full  p-1 border-black"
-              placeholder="Keyword"
-            >
-              <option value="Best Selling">Best Selling</option>
-            </select>
-          </div>
+        
         </div>
       </div>
       <div className=" mb-8 ">
@@ -140,7 +110,7 @@ const Menu = () => {
               typeCoffe === "COFFEE AND BAVERAGE" ? classes.active : {}
             } ${classes.non_active} text-center cursor-pointer py-7 w-2/4`}
           >
-            <h1 className="font-bold text-2xl">COFFEE AND BAVERAGE</h1>
+            <h1 className="font-bold lg:text-xl ">COFFEE AND BAVERAGE</h1>
           </span>
           <span
             onClick={() => filterType("FOOD AND SNACK")}
@@ -148,7 +118,7 @@ const Menu = () => {
               typeCoffe === "FOOD AND SNACK" ? classes.active : {}
             } ${classes.non_active} text-center cursor-pointer py-7 w-2/4`}
           >
-            <h1 className="font-bold text-2xl">FOOD AND SNACK</h1>
+            <h1 className="font-bold lg:text-xl ">FOOD AND SNACK</h1>
           </span>
           <span
             onClick={() => filterType("IMAJI COFFEE AT HOME")}
@@ -156,7 +126,7 @@ const Menu = () => {
               typeCoffe === "IMAJI COFFEE AT HOME" ? classes.active : {}
             } ${classes.non_active} text-center cursor-pointer py-7 w-2/4`}
           >
-            <h1 className="font-bold text-2xl">IMAJI COFFEE AT HOME</h1>
+            <h1 className="font-bold lg:text-xl ">IMAJI COFFEE AT HOME</h1>
           </span>
         </div>
         <div className="grid grid-cols-3 justify-items-center ">{content}</div>

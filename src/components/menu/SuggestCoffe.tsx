@@ -30,11 +30,11 @@ const SuggestCoffee = () => {
       <div className="grid justify-items-center grid-cols-3 gap-5">
         {suggestCoffees.map((item) => (
           <div key={item.id} className="w-2/4 mb-7">
-            <div className="w-full h-72 cursor-pointer">
+            <div className="w-full cursor-pointer">
               <Link to={`/menu/detail/${item.title}`}>
                 <img
                   src={item.image}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto "
                   alt={item.image}
                 />
               </Link>

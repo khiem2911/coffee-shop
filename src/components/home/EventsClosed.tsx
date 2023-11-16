@@ -5,14 +5,14 @@ import coffee from "../../img/81237432_2482896068503442_1187133878351953920_n.jp
 import teachCoffee from "../../img/Phuong-phap-loc-–-Pour-over.jpg";
 const EventsClosed = () => {
   return (
-    <div>
+    <div className='md:mb-7'>
       <span>
         <h1 className="font-bold text-5xl">Events Closed</h1>
       </span>
       <div className="wrap-events">
-        <div className="flex w-full justify-around pt-8">
-          <div className="w-3/6 h-96 relative   ">
-            <img src={ben} alt={ben} className="w-full h-full object-cover " />
+        <div className="flex w-full items-center md:items-start lg:items-center justify-around md:pt-8">
+          <div className="w-3/6  relative mr-2   ">
+            <img src={ben} alt={ben} className="w-full h-auto max-h-96 " />
             <div className="bg-white  p-3 absolute bottom-0 left-0">
               <h1 className="font-bold text-lg ">
                 BEZZERA LATTE ART COMPETITION
@@ -20,8 +20,8 @@ const EventsClosed = () => {
               <p className="text-date font-bold">20 Mar 2023</p>
             </div>
           </div>
-          <div className="w-1/5 h-80 relative ">
-            <img src={sensoryCupping} alt={sensoryCupping} className="w-full h-full object-cover" />
+          <div className="w-3/6  relative ">
+            <img src={sensoryCupping} alt={sensoryCupping} className="w-full h-auto max-h-80 " />
             <div className="bg-white  p-3 absolute bottom-0 left-0">
               <h1 className="font-bold text-lg ">
                SENSORY AND CUPPING CLASS
@@ -30,11 +30,11 @@ const EventsClosed = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 justify-around items-center p-8">
-          <div className=" relative w-1/5 h-80 m-4">
+        <div className="flex justify-between xl:m-4 xl:gap-4  items-center">
+          <div className=" relative w-6/12   m-4">
             <img
               src={cupping}
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-80"
               alt={cupping}
             />
             <div className="bg-white  p-3 absolute bottom-0 left-0">
@@ -44,27 +44,27 @@ const EventsClosed = () => {
               <p className="text-date font-bold">20 Mar 2023</p>
             </div>
           </div>
-          <div className=" relative w-1/5 h-80 m-4">
+          <div className=" relative  w-5/12   m-4">
             <img
               src={coffee}
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-80 "
               alt={coffee}
             />
             <div className="bg-white w-full  p-3 pl-5 absolute bottom-0 left-0">
-              <h1 className="font-bold text-lg ">
+              <h1 className="font-bold text-lg overflow-hidden ">
                COMPETITIONS AND SHOWCASES
               </h1>
               <p className="text-date font-bold">20 Mar 2023</p>
             </div>
           </div>
-          <div className=" relative w-1/5 h-80 m-4">
+          <div className=" relative  w-5/12  m-4">
             <img
               src={teachCoffee}
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-80"
               alt={teachCoffee}
             />
             <div className="bg-white  p-3 absolute bottom-0 left-0">
-              <h1 className="font-bold text-lg ">
+              <h1 className="font-bold text-lg overflow-hidden ">
                 ART AND COFFEE FESTIVAL
               </h1>
               <p className="text-date font-bold">20 Mar 2023</p>

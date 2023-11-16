@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const Auththen:React.FC<auth> = (props) =>{
     return (
-        <div className="bg-white w-3/5 h-screen px-24 pt-4">
+        <div className="bg-white w-3/5 h-screen pl-3 lg:px-24 pt-4">
       <div className="flex justify-end">
         <Link 
           to="/"

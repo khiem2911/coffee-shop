@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 const Auth = () => {
   return (
     <div className="flex">
-      <div className=" w-2/5 h-screen bg-bg-suggest pl-20 pt-8">
+      <div className=" w-2/5 h-screen bg-bg-suggest pl-3 lg:pl-20 pt-8">
         <span className="flex gap-2">
             <p className="text-2xl">TONY</p>
             <p className="text-2xl text-title">Coffee.</p>

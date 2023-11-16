@@ -6,7 +6,6 @@ import meal from "../../model/meal";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { clearMeal } from "../../slice";
 
 const Cart = () => {
   const data = useAppSelector((state) => state.cart.meals);
@@ -27,6 +26,13 @@ const Cart = () => {
   };
 
   const onHandlerCheckOut = async () => {
+
+    if(!user){
+      return alert('You have to login first!')
+    }
+
+    
+
     const userId = user!.displayName;
     navigate('/checkout')
 
@@ -61,9 +67,9 @@ const Cart = () => {
 
   return (
     <div className="flex">
-      <div className="flex flex-col w-9/12 h-screen pl-16 pr-12 pt-16 pb-8">
+      <div className="flex flex-col w-9/12 h-screen pl-3 lg:pl-16 pr-12 pt-16 pb-8">
         <span className="mb-7">
-          <h1 className=" text-5xl font-bold">My cart</h1>
+          <h1 className=" text-3xl lg:text-4xl font-bold">My cart</h1>
         </span>
         <div className=" h-3/4 overflow-auto">
           <div className="flex justify-between items-center ">
@@ -131,8 +137,8 @@ const Cart = () => {
           </Link>
         </div>
       </div>
-      <div className="w-3/12 bg-bg-suggest flex flex-col h-screen pl-16 pr-12 pt-16 pb-8">
-        <h2 className="text-4xl font-bold">Summary</h2>
+      <div className="w-3/12 bg-bg-suggest flex flex-col h-screen pl-3 lg:pl-16 pr-12 pt-16 pb-8">
+        <h2 className="text-3xl lg:text-4xl font-bold">Summary</h2>
         <div className="mt-4">
           <span className="flex justify-between">
             <p>Subtotal</p>

@@ -93,9 +93,9 @@ const Detail = () => {
                 <button onClick={onIncreaseQuantity} className="text-xl">+</button>
               </div>
             </div>
-            <Link onClick={onAddToCart} to='/cart' className="bg-title hover:bg-hover-bg text-white text-center p-3">
+            <button onClick={onAddToCart}  className="bg-title hover:bg-hover-bg text-white text-center p-3">
               Buy it Now
-            </Link>
+            </button>
           </div>
         </div>
       </div>

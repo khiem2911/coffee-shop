@@ -27,7 +27,7 @@ const Home = () => {
   }, [onSetUser]);
 
   return (
-    <div className="px-20">
+    <div className=" lg:px-20 px-5">
       <UpCommingEvents/>
       <EventsClosed/>
     </div>
