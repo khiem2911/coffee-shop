@@ -25,7 +25,7 @@ const Detail = () => {
       setQuantity((quantity)=>quantity+1)
   }
 
-  const onAddToCart = () =>{
+  const onAddToCart = (check?:boolean) =>{
       if(!user){
        return navigate('/auth/login')
       }
@@ -37,6 +37,9 @@ const Detail = () => {
           money:Math.round(Math.random()*20)
       }
      dispatch(addMeal(value))
+     if(check){
+        navigate('/cart')
+     }
   }
 
   const onDecreaseQuantity = () =>{
@@ -84,7 +87,7 @@ const Detail = () => {
           </span>
           <div className="flex flex-col gap-3 w-3/4">
             <div className="flex justify-between gap-4">
-              <button onClick={onAddToCart} className=" border border-title w-4/6 hover:bg-title  hover:text-white p-3 text-title font-bold">
+              <button onClick={()=>onAddToCart(false)} className=" border border-title w-4/6 hover:bg-title  hover:text-white p-3 text-title font-bold">
                 Add to Cart
               </button>
               <div className="flex justify-around items-center w-2/6 border border-title">
@@ -93,7 +96,7 @@ const Detail = () => {
                 <button onClick={onIncreaseQuantity} className="text-xl">+</button>
               </div>
             </div>
-            <button onClick={onAddToCart}  className="bg-title hover:bg-hover-bg text-white text-center p-3">
+            <button onClick={()=>onAddToCart(true)}  className="bg-title hover:bg-hover-bg text-white text-center p-3">
               Buy it Now
             </button>
           </div>
